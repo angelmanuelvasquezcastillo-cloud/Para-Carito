@@ -171,9 +171,9 @@ scene.add(bg);
 
 // Galaxy
 const galaxy = new THREE.Group(); scene.add(galaxy);
-const phrases = ["Pinchecha ✨", " Hermosa 💛", "Mi Bebe", "Mi Cielito 🌌", "Hermosota ✨", "Mi Infinita ♾️", "Mi Todo", "Me Encantas 🥰", "Te amo Carito❤️  ", "Te Amo💛", "Mi Canción Favorita 🎶", "Unica 😊", "Mi Reina 👑", "Mi Amor", "Mi Mundo", "Mi Luz 🌠", "Mi Niña", "Mi Tesoro💛", "Mi Paz", "Mi Eterna", "Mi Sueño", "Mi Pensamiento Favorito", "Mi Bombom", "Mi Diosa", "Te Amo Infinitamente ♾️", "Mi casualidad favorita", "Mi persona favorita"];
+const phrases = ["Pinchecha ✨", " Hermosa 💛", "Mi Bebe", "Mi Cielito 🌌", "Hermosota ✨", "Mi Infinita ♾️", "Mi Todo", "Me Encantas 🥰", "Te Amo Carito❤️  ", "Te Amo❤️", "Mi Canción Favorita 🎶", "Única 😊", "Mi Reina 👑", "Mi Amor", "Mi Mundo", "Mi Luz 🌠", "Mi Niña", "Mi Tesoro💛", "Mi Paz", "Mi Eterna", "Mi Sueño", "Mi Pensamiento Constante", "Mi Bombom", "Mi Diosa", "Te Amo Infinitamente ♾️", "Mi casualidad favorita", "Mi persona favorita", "  Mi siempre, aunque todavía no seamos nada  ", "Mi debilidad que no quiero superar", "Mi ilusión mas real", "Mi voz favorita", "Desde que dijiste mi nombre por primera vez", "Desde lo simple que se volvió especial", "Desde aquel cargador prestado", "Tu forma de llamarme con emoción", "Mi Bella Doncella", "Mi Linda Princesa", "Te elegiría sin pensarlo", "Con ese detallito de Pikachu⚡", "Con algo de Stitch💙", "Gracias por hablarme primero✨", "Mi BlancaNieves👑", "Te Quiero Carito❤️", "Me Gustas Carito❤️"];
 const phraseCount = Math.max(phrases.length * 6, 180);
-const arms = 5, radius = 82, maxH = 22;
+const arms = 5, radius = 120, maxH = 22;
 
 function makeTextTexture(text, size=48){
   const c=document.createElement('canvas'); c.width=1024; c.height=128;
@@ -187,7 +187,7 @@ function makeTextTexture(text, size=48){
 
 for(let i=0;i<phraseCount;i++){ 
   const text = phrases[i % phrases.length];
-  const tex = makeTextTexture(text,48);
+  const tex = makeTextTexture(text,64);
 
   const spr = new THREE.Sprite(
     new THREE.SpriteMaterial({ map:tex, transparent:true, depthWrite:false })
