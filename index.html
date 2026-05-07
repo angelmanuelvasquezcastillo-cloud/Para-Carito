@@ -28,7 +28,7 @@
 </head>
 <body>
 <canvas id="galaxy-canvas"></canvas>
-<div class="pill">Te Amo Mucho Mis Ojitos Bonitos❤️</div>
+<div class="pill">Me Gustas, Mi Princesita Dorada💘 (Toca una vez para escuchar la música. / Doble toque corazones:💗 / Mueve con tu dedo de arriba, abajo y los costados para leer, ya sea dando por toques o manteniendo presionado. / Con dos dedos puedes acercar y alejar, hasta te puedes meter en el agujero)</div>
 <div class="attribution">Base: tlanex · Adaptación para Jotab 💫</div>
 <div id="err" class="error"></div>
 
@@ -63,7 +63,9 @@ let index = 0;
 audio.addEventListener("ended", () => {
   index = (index + 1) % canciones.length;
   audio.src = canciones[index];
-  audio.play();
+  audio.play().catch(err => {
+    console.log("Error audio:", err);
+  });
 });
 const playBtn = document.getElementById('playBtn');
 const pickBtn = document.getElementById('pickBtn');
@@ -91,8 +93,9 @@ function iniciarAudioRomantico() {
   }
 }
 
-document.body.addEventListener('click', iniciarAudioRomantico, { once: true });
-document.body.addEventListener('touchstart', iniciarAudioRomantico, { once: true });
+['click','touchstart','touchend'].forEach(evt => {
+  document.body.addEventListener(evt, iniciarAudioRomantico, { once: true });
+});
 playBtn.onclick = async () => {
   try { if (audio.paused) { await audio.play(); playBtn.textContent='⏸︎'; } else { audio.pause(); playBtn.textContent='▶︎'; } }
   catch(e){ showError('Si no suena, toca “Elegir canción” y selecciona tu MP3.'); }
@@ -171,7 +174,7 @@ scene.add(bg);
 
 // Galaxy
 const galaxy = new THREE.Group(); scene.add(galaxy);
-const phrases = ["Pinchecha ✨", " Hermosa 💛", "Mi Bebe", "Mi Cielito 🌌", "Hermosota ✨", "Mi Infinita ♾️", "Mi Todo", "Me Encantas 🥰", "Te Amo Carito❤️  ", "Te Amo❤️", "Mi Canción Favorita 🎶", "Única 😊", "Mi Reina 👑", "Mi Amor", "Mi Mundo", "Mi Luz 🌠", "Mi Niña", "Mi Tesoro💛", "Mi Paz", "Mi Eterna", "Mi Sueño", "Mi Pensamiento Constante", "Mi Bombom", "Mi Diosa", "Te Amo Infinitamente ♾️", "Mi casualidad favorita", "Mi persona favorita", "  Mi siempre, aunque todavía no seamos nada  ", "Mi debilidad que no quiero superar", "Mi ilusión mas real", "Mi voz favorita", "Desde que dijiste mi nombre por primera vez", "Desde lo simple que se volvió especial", "Desde aquel cargador prestado", "Tu forma de llamarme con emoción", "Mi Bella Doncella", "Mi Linda Princesa", "Te elegiría sin pensarlo", "Con ese detallito de Pikachu⚡", "Con algo de Stitch💙", "Gracias por hablarme primero✨", "Mi BlancaNieves👑", "Te Quiero Carito❤️", "Me Gustas Carito❤️"];
+const phrases = ["Pinchecha ✨", " Hermosa 💛", "Mi Princesita Dorada💛", "Mi Cielito 🌌", "Hermosota ✨", "Mi Infinita ♾️", "Mi Todo", "Me Encantas 🥰", "Te Amo Carito❤️", "Inefable", "Mi Canción Favorita 🎶", "Única 😊", "Reina 👑", "Mis Ojitos Bonitos❤️", "Mi Mundo", "Mi Luz 🌠", "Mi Niña", "Mi Tesoro💛", "Mi Paz", "Mi Eterna", "Mi Sueño", "La mejor en Brawl Stars👑", "Mi Pensamiento Constante", "Carito❤️", "Te Amo Infinitamente ♾️", "Mi casualidad favorita", "Mi persona favorita", "  Mi siempre, aunque todavía no seamos nada  ", "Mi debilidad que no quiero superar", "Mi ilusión mas real", "Mi voz favorita", "Desde que dijiste mi nombre por primera vez", "Desde lo simple que se volvió especial", "Desde aquel cargador prestado", "Tu forma de llamarme con emoción", "Mi Bella Doncella", "Mi Linda Princesa", "Te elegiría sin pensarlo", "Con ese detallito de Pikachu⚡", "Con algo de Stitch💙", "Gracias por hablarme primero✨", "Mi BlancaNieves👑", "Te Quiero Carito❤️", "Me Gustas Carito💘", "Amaré tus defectos, incluso aquello que no te gusta de ti", "Si dices 10 cosas que odies de tí, te diré 2000 más que me gustan", "Mi carita bonita😊", "La mejor dibujante✨", "Amo tu carita🥰", "Me gustas tal y como estás y como eres, no tienes que cambiar nada de ti. Me enamoré de ti por lo que eres, Carito💘", "GRACIAS POR SER TÚ😊"];
 const phraseCount = Math.max(phrases.length * 6, 180);
 const arms = 5, radius = 130, maxH = 22;
 
